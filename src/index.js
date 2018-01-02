@@ -42,7 +42,7 @@ export async function expandGlobList(globs) {
 export function addHandlebarsHelpers(files) {
   files.forEach((file) => {
     debug(`Requiring ${file}`);
-    const handlebarsHelper = require(file); // eslint-disable-line global-require
+    const handlebarsHelper = require(resolvePath(file)); // eslint-disable-line global-require
     if (handlebarsHelper && typeof handlebarsHelper.register === 'function') {
       debug(`${file} has a register function, registering with handlebars`);
       handlebarsHelper.register(Handlebars);
